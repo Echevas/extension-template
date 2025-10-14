@@ -13,5 +13,5 @@ export default defineManifest({
     action: {
         default_popup: "src/echo-popup/index.html",
     },
-    permissions: ["identity", "storage", "contextMenus"],
+    permissions: ["identity", "storage"],
 })
