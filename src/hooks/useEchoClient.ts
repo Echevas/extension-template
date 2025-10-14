@@ -53,7 +53,7 @@ import {
                 action: "REFRESH_TOKEN",
                 params: {
                   echoBaseUrl: apiUrl,
-                  echoClientId: "3df07026-b25a-4797-93af-f35bdd3a7c86",
+                  echoClientId: import.meta.env.VITE_ECHO_CLIENT_ID,
                 },
               },
               (response) => {

@@ -98,8 +98,8 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
           {
             action: "AUTHENTICATE",
             params: {
-              echoClientId: "3df07026-b25a-4797-93af-f35bdd3a7c86",
-              echoBaseUrl: "https://echo.merit.systems",
+              echoClientId: import.meta.env.VITE_ECHO_CLIENT_ID,
+              echoBaseUrl: import.meta.env.VITE_ECHO_BASE_URL,
             },
           },
           (response) => {
@@ -155,7 +155,7 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
     }
   };
 
-  const echoClient = useEchoClient({ apiUrl: "https://echo.merit.systems" });
+  const echoClient = useEchoClient({ apiUrl: import.meta.env.VITE_ECHO_BASE_URL });
 
   const refreshBalance = useCallback(async () => {
     const balance = await echoClient?.balance.getBalance();
@@ -194,8 +194,8 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
             {
               action: "GET_TOKEN",
               params: {
-                echoBaseUrl: "https://echo.merit.systems",
-                echoClientId: "3df07026-b25a-4797-93af-f35bdd3a7c86",
+                echoBaseUrl: import.meta.env.VITE_ECHO_BASE_URL,
+                echoClientId: import.meta.env.VITE_ECHO_CLIENT_ID,
               },
             },
             (response) => {
