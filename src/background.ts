@@ -112,7 +112,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
                 },
               );
               break;
-        case "CEHCK_AUTH":
+        case "CHECK_AUTH":
             console.log("Checking auth");
             chrome.storage.local.get(
                 ["echo_user", "echo_refresh_token", "echo_refresh_token_expires_at"],
@@ -123,7 +123,6 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
                     result.echo_refresh_token &&
                     result.echo_refresh_token_expires_at &&
                     now < result.echo_refresh_token_expires_at;
-        
                   sendResponse({
                     isAuthenticated,
                     user: isAuthenticated ? result.echo_user : null,
@@ -150,4 +149,5 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         default:
             console.log("Unknown action");
     }
+    return true;
 })

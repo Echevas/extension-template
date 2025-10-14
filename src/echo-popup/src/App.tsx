@@ -1,5 +1,5 @@
 import { EchoProvider } from "@/contexts/echo";
-import { WelcomePage } from "./welcome";
+import { WelcomePage } from "./pages/welcome";
 import "./App.css";
 
 function App() {
