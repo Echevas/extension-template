@@ -2,6 +2,7 @@ import { authenticate, refreshTokens } from "@/lib/echoAuth";
 
 // These are the actions necessary to maintain a proper authenticated connection with Echo.
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    console.log("Message received:", message);
     switch (message.action) {
         case "AUTHENTICATE":
             console.log("Authentication request");

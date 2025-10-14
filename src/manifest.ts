@@ -6,6 +6,7 @@ export default defineManifest({
     name: "Echo Extension Template",
     description: "Template to start an echo chrome extension with the proper auth to use AI resources like OpenAI, Anthropic, and more.",
     host_permissions: ["<all_urls>"],
+    key: "piebpggjkfeekhamnnmmlkckahbjnchi",
     background: {
         service_worker: "src/background.ts",
         type: "module",
