@@ -179,6 +179,9 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
 
   const { createPaymentLink } = useEchoPayments(echoClient);
 
+  // TODO: update getBalance
+  const freeTierBalance = null;
+
   const getToken = async (): Promise<string | null> => {
     try {
       const response = await new Promise<{ token: string | null }>(
@@ -219,6 +222,7 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
     isLoading,
     error,
     token,
+    freeTierBalance,
     echoClient,
     signIn,
     signOut,

@@ -1,6 +1,6 @@
 import React from "react";
 import type { EchoUser, EchoBalance } from "@/types/echo";
-import type { EchoClient } from "@merit-systems/echo-typescript-sdk";
+import type { EchoClient, GetBalanceByIdFreeResponse } from "@merit-systems/echo-typescript-sdk";
 
 interface EchoContextValue {
   user: EchoUser | null;
@@ -9,13 +9,14 @@ interface EchoContextValue {
   isLoading: boolean;
   error: string | null;
   token: string | null;
+  freeTierBalance: GetBalanceByIdFreeResponse | null;
   echoClient: EchoClient | null;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
   refreshBalance: () => Promise<void>;
   createPaymentLink: (
     amount: number,
-    description: string,
+    description?: string,
     successUrl?: string,
   ) => Promise<string>;
   getToken: () => Promise<string | null>;

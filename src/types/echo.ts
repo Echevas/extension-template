@@ -2,7 +2,7 @@ export interface EchoUser {
     id: string;
     email: string;
     name?: string;
-    picture?: string;
+    image?: string;
   }
   
   export interface AuthenticateUserResponse {
