@@ -151,3 +151,35 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     }
     return true;
 })
+
+// SidePanel for chat example
+chrome.runtime.onInstalled.addListener(async () => {
+    console.log("Web Cmd+K is installed");
+  
+    // Set side panel behavior - don't open on action click, only via command
+    try {
+      await chrome.sidePanel.setPanelBehavior({ 
+        openPanelOnActionClick: false 
+      });
+      await chrome.sidePanel.setOptions({
+        enabled: true,
+        path: "src/side-panel-chat-example/index.html",
+      });
+    } catch (error) {
+      console.error("Error setting side panel options:", error);
+    }
+  });
+  
+  chrome.commands.onCommand.addListener((command) => {
+    if (command === "open-side-panel") {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId) {
+          console.log("Opening side panel on tab:", tabId);
+          chrome.sidePanel.open({ tabId });
+        } else {
+          console.warn("No active tab found");
+        }
+      });
+    }
+  });

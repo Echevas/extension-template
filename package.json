@@ -21,6 +21,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
+        "@ai-sdk/react": "^2.0.72",
         "@merit-systems/echo-typescript-sdk": "^1.0.19",
         "@radix-ui/react-avatar": "^1.1.10",
         "@radix-ui/react-collapsible": "^1.1.12",
@@ -30,6 +31,7 @@
         "@radix-ui/react-select": "^2.2.6",
         "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-tooltip": "^1.2.8",
+        "@types/react-syntax-highlighter": "^15.5.13",
         "autonumeric": "^4.10.9",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -37,7 +39,10 @@
         "lucide-react": "^0.545.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
+        "react-syntax-highlighter": "^15.6.6",
+        "streamdown": "^1.4.0",
         "tailwind-merge": "^3.3.1",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "use-stick-to-bottom": "^1.1.1"
     }
 }

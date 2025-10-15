@@ -14,5 +14,17 @@ export default defineManifest({
     action: {
         default_popup: "src/echo-popup/index.html",
     },
-    permissions: ["identity", "storage"],
+    side_panel: {
+        default_path: "src/side-panel-chat-example/index.html",
+    },
+    permissions: ["identity", "storage", "sidePanel"],
+    commands: {
+        "open-side-panel": {
+          suggested_key: {
+            default: "Ctrl+K",
+            mac: "Command+K",
+          },
+          description: "Open the side panel",
+        },
+      },
 })

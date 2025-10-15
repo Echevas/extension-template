@@ -16,6 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         popup: "src/echo-popup/index.html",
+        sidePanel: "src/side-panel-chat-example/index.html",
       },
     },
     outDir: "dist",
