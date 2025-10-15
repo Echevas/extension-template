@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { EchoContext, type EchoContextValue } from "@/hooks/useEcho";
 import type { EchoUser, EchoBalance } from "@/types/echo";
 import { useEchoClient } from "@/hooks/useEchoClient";
+import { useEchoPayments } from "@/hooks/useEchoPayments";
 
 interface EchoProviderProps {
   children: React.ReactNode;
@@ -176,15 +177,7 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
     refreshBalance();
   }, [refreshBalance]);
 
-  const createPaymentLink = async (
-    amount: number,
-    description: string,
-    successUrl?: string,
-  ): Promise<string> => {
-    // TODO: Implement payment link creation
-    console.log("Creating payment link:", { amount, description, successUrl });
-    return "";
-  };
+  const { createPaymentLink } = useEchoPayments(echoClient);
 
   const getToken = async (): Promise<string | null> => {
     try {
