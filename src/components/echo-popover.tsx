@@ -10,18 +10,18 @@ import { LogOut } from 'lucide-react';
 export function EchoAccountButtonPopover({ echo }: { echo: EchoContextValue }) {
   const { user, signOut } = echo;
   return (
-    <PopoverContent className="w-[380px] p-0" align="end">
+    <PopoverContent className="w-[340px] p-0" align="end">
       {/* Header */}
-      <div className="flex items-center justify-between border-b p-4">
+      <div className="flex items-center justify-between border-b p-3">
         <Button
           variant="ghost"
-          className="flex items-center gap-2 h-auto p-2 -ml-2 hover:bg-accent"
+          className="flex items-center gap-2 h-auto p-1.5 -ml-1.5 hover:bg-accent"
           onClick={() =>
             window.open('https://echo.merit.systems/dashboard', '_blank')
           }
         >
           <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
-            <Avatar className="h-8 w-8">
+            <Avatar className="h-7 w-7">
               <AvatarImage src={user?.image ?? ''} />
               <AvatarFallback>
                 {user?.name?.charAt(0) || user?.email?.charAt(0)}
@@ -43,12 +43,12 @@ export function EchoAccountButtonPopover({ echo }: { echo: EchoContextValue }) {
       </div>
 
       {/* Balance */}
-      <div className="p-4 border-b">
+      <div className="p-3 border-b">
         <EchoBalance echo={echo} />
       </div>
 
       {/* Add Credits Button */}
-      <div className="p-4 border-b">
+      <div className="p-3">
         <EchoTopUpButton echo={echo} />
       </div>
     </PopoverContent>

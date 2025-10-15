@@ -65,6 +65,7 @@ export function EchoTopUpButton({ echo }: { echo: EchoContextValue }) {
                   ) {
                     window.open(url, '_blank');
                   } else {
+                    console.log("opening popup", url);
                     popup.location.href = url;
                   }
                 })
