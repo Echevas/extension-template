@@ -17,7 +17,7 @@ export default defineManifest({
     side_panel: {
         default_path: "src/side-panel-chat-example/index.html",
     },
-    permissions: ["identity", "storage", "sidePanel"],
+    permissions: ["identity", "storage", "sidePanel", "contextMenus"],
     commands: {
         "open-side-panel": {
           suggested_key: {
