@@ -17,7 +17,6 @@ export default defineConfig({
       input: {
         popup: "src/echo-popup/index.html",
         sidePanel: "src/side-panel-chat-example/index.html",
-        imageEdits: "src/image-edits/index.html",
       },
     },
     outDir: "dist",
