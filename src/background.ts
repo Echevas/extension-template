@@ -168,6 +168,12 @@ chrome.runtime.onInstalled.addListener(async () => {
     } catch (error) {
       console.error("Error setting side panel options:", error);
     }
+    // Create context menu for images
+    chrome.contextMenus.create({
+      id: "image-editing-extension",
+      title: "Image Editing Extension",
+      contexts: ["image"]
+    });
   });
   
   chrome.commands.onCommand.addListener((command) => {
@@ -183,3 +189,21 @@ chrome.runtime.onInstalled.addListener(async () => {
       });
     }
   });
+
+  // Handle context menu clicks
+  chrome.contextMenus.onClicked.addListener((info, _tab) => {
+    if (info.menuItemId === "image-editing-extension" && info.srcUrl) {
+      
+      // Pass the image URL as a query parameter
+      const baseUrl = chrome.runtime.getURL("src/image-edits/index.html");
+      const urlWithParams = `${baseUrl}?imageUrl=${encodeURIComponent(info.srcUrl)}`;
+      
+      chrome.windows.create({
+        url: urlWithParams,
+        type: "popup",
+        width: 800,
+        height: 600
+      });
+    }
+  });
+
