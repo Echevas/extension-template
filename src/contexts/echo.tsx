@@ -161,8 +161,8 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
     balance,
     freeTierBalance,
     refreshBalance,
-  } = useEchoBalance(echoClient, import.meta.env.VITE_ECHO_APP_ID);
-
+  } = useEchoBalance(echoClient, import.meta.env.VITE_ECHO_CLIENT_ID);
+  
   useEffect(() => {
     refreshBalance();
   }, [refreshBalance]);
