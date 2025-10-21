@@ -1,3 +1,5 @@
+import type { GetBalanceResponse } from "@merit-systems/echo-typescript-sdk";
+
 export interface EchoUser {
     id: string;
     email: string;
@@ -13,10 +15,4 @@ export interface EchoUser {
     refreshTokenExpiresAt: number;
   }
   
-  export interface EchoBalance {
-    totalPaid: number;
-    totalSpent: number;
-    balance: number;
-    currency: string;
-  }
-  
+  export type EchoBalance = GetBalanceResponse;

@@ -13,7 +13,7 @@ interface EchoContextValue {
   echoClient: EchoClient | null;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
-  refreshBalance: () => Promise<void>;
+  refreshBalance: () => Promise<any>;
   createPaymentLink: (
     amount: number,
     description?: string,
