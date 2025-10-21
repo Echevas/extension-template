@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import { EchoContext, type EchoContextValue } from "@/hooks/useEcho";
-import type { EchoUser, EchoBalance } from "@/types/echo";
+import type { EchoUser } from "@/types/echo";
 import { useEchoClient } from "@/hooks/useEchoClient";
 import { useEchoPayments } from "@/hooks/useEchoPayments";
+import { useEchoBalance } from "@/hooks/useEchoBalance";
 
 interface EchoProviderProps {
   children: React.ReactNode;
@@ -32,7 +33,6 @@ const checkAuthStatus = async (): Promise<{
 export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
   const [user, setUser] = useState<EchoUser | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [balance, setBalance] = useState<EchoBalance | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -126,7 +126,6 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
       setIsAuthenticated(false);
       setToken(null);
       setUser(null);
-      setBalance(null);
     } finally {
       setIsLoading(false);
     }
@@ -158,29 +157,17 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
 
   const echoClient = useEchoClient({ apiUrl: import.meta.env.VITE_ECHO_BASE_URL });
 
-  const refreshBalance = useCallback(async () => {
-    const balance = await echoClient?.balance.getBalance();
-    if (balance) {
-      const echoBalance: EchoBalance = {
-        totalPaid: balance.totalPaid,
-        totalSpent: balance.totalSpent,
-        balance: balance.balance,
-        currency: "USD", // Balance from SDK doesn't include currency, defaulting to USD
-      };
-      setBalance(echoBalance);
-    } else {
-      setBalance(null);
-    }
-  }, [echoClient]);
-
+  const {
+    balance,
+    freeTierBalance,
+    refreshBalance,
+  } = useEchoBalance(echoClient, import.meta.env.VITE_ECHO_CLIENT_ID);
+  
   useEffect(() => {
     refreshBalance();
   }, [refreshBalance]);
 
   const { createPaymentLink } = useEchoPayments(echoClient);
-
-  // TODO: update getBalance
-  const freeTierBalance = null;
 
   const getToken = async (): Promise<string | null> => {
     try {
