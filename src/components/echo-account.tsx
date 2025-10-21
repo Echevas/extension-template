@@ -8,11 +8,23 @@ import { Popover, PopoverTrigger } from '@/components/ui/popover';
 import { Skeleton } from '@/components/ui/skeleton';
 import { type EchoContextValue } from '@/hooks/useEcho';
 import { Gift, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function EchoAccountButton({ echo }: { echo: EchoContextValue }) {
-  const { user, balance, freeTierBalance, signIn, isLoading } = echo;
+  const { user, balance, freeTierBalance, signIn, isLoading, refreshBalance } = echo;
   const [isSigningIn, setIsSigningIn] = useState(false);
+  
+  // Auto-refresh balance every 10 seconds
+  useEffect(() => {
+    if (!user) return; // Only refresh when user is authenticated
+    
+    const interval = setInterval(() => {
+      refreshBalance();
+    }, 10000); // 10 seconds
+    
+    return () => clearInterval(interval);
+  }, [user, refreshBalance]);
+  
   const totalBalance =
     (balance?.balance || 0) + (freeTierBalance?.userSpendInfo.amountLeft || 0);
   const hasFreeCredits = freeTierBalance?.userSpendInfo.amountLeft ?? 0 > 0;

@@ -17,17 +17,6 @@ export function useEchoPayments(echoClient: EchoClient | null) {
 
       setIsLoading(true);
       try {
-        // Get active tab URL
-        // const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-        // const activeTab = tabs[0];
-        // if (!activeTab?.url) {
-        //   throw new Error('No active tab');
-        // }
-
-        // const activeTabUrl = new URL(activeTab.url).origin;
-        // console.log("activeTabUrl", activeTabUrl);
-
-
         const response = await echoClient.payments.createPaymentLink({
           amount,
           description: description || 'Echo Credits',
